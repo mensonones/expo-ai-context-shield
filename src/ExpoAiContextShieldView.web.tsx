@@ -1,15 +1,13 @@
 import * as React from 'react';
-
+import { View } from 'react-native';
 import { ExpoAiContextShieldViewProps } from './ExpoAiContextShield.types';
 
 export default function ExpoAiContextShieldView(props: ExpoAiContextShieldViewProps) {
+  const { isSensitive, style, children, ...viewProps } = props;
+
   return (
-    <div>
-      <iframe
-        style={{ flex: 1 }}
-        src={props.url}
-        onLoad={() => props.onLoad({ nativeEvent: { url: props.url } })}
-      />
-    </div>
+    <View style={[{ flex: 1 }, style]} {...viewProps}>
+      {children}
+    </View>
   );
 }

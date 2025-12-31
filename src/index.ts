@@ -1,5 +1,7 @@
-// Reexport the native module. On web, it will be resolved to ExpoAiContextShieldModule.web.ts
-// and on native platforms to ExpoAiContextShieldModule.ts
-export { default } from './ExpoAiContextShieldModule';
-export { default as ExpoAiContextShieldView } from './ExpoAiContextShieldView';
-export * from  './ExpoAiContextShield.types';
+import ExpoAiContextShieldModule from './ExpoAiContextShieldModule';
+
+export { default as AiContextShield } from './ExpoAiContextShieldView';
+export * from './ExpoAiContextShield.types';
+
+// Allows calling setVisualSecurity(true/false) manually outside the component
+export const { setVisualSecurity } = ExpoAiContextShieldModule;

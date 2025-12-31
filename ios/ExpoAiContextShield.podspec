@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
   s.author         = package['author']
   s.homepage       = package['homepage']
   s.platforms      = {
-    :ios => '15.1',
-    :tvos => '15.1'
+    :ios => '13.4', # Compatibilidade padrão do Expo
+    :tvos => '13.4'
   }
   s.swift_version  = '5.9'
   s.source         = { git: 'https://github.com/mensonones/expo-ai-context-shield' }
@@ -23,7 +23,9 @@ Pod::Spec.new do |s|
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
+    'SWIFT_COMPILATION_MODE' => 'wholemodule'
   }
 
-  s.source_files = "**/*.{h,m,mm,swift,hpp,cpp}"
+  # Aponta especificamente para os arquivos dentro da pasta ios
+  s.source_files = "ios/**/*.{h,m,mm,swift,hpp,cpp}"
 end

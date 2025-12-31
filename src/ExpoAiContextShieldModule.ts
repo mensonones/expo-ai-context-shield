@@ -1,12 +1,9 @@
-import { NativeModule, requireNativeModule } from 'expo';
-
+import { NativeModule, requireNativeModule } from 'expo-modules-core';
 import { ExpoAiContextShieldModuleEvents } from './ExpoAiContextShield.types';
 
 declare class ExpoAiContextShieldModule extends NativeModule<ExpoAiContextShieldModuleEvents> {
-  PI: number;
-  hello(): string;
-  setValueAsync(value: string): Promise<void>;
+  // Defines the native function we created in Kotlin to block screenshots/visual AI
+  setVisualSecurity(secure: boolean): void;
 }
 
-// This call loads the native module object from the JSI.
 export default requireNativeModule<ExpoAiContextShieldModule>('ExpoAiContextShield');

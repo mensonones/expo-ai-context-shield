@@ -1,9 +1,7 @@
 {
-  "platforms": ["apple", "android", "web"],
-  "apple": {
-    "modules": ["ExpoAiContextShieldModule"]
-  },
+  "platforms": ["android", "ios", "web"],
   "android": {
-    "modules": ["expo.modules.aicontextshield.ExpoAiContextShieldModule"]
+    "modules": ["expo.modules.aishield.ExpoAiContextShieldModule"],
+    "views": ["expo.modules.aishield.ExpoAiContextShieldView"]
   }
 }

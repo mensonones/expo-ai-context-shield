@@ -1,40 +1,18 @@
-import { useEvent } from 'expo';
-import ExpoAiContextShield, { ExpoAiContextShieldView } from 'expo-ai-context-shield';
-import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { AiContextShield } from "expo-ai-context-shield";
+import { ScrollView, Text, View } from "react-native";
 
 export default function App() {
-  const onChangePayload = useEvent(ExpoAiContextShield, 'onChange');
-
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView style={styles.container}>
         <Text style={styles.header}>Module API Example</Text>
-        <Group name="Constants">
-          <Text>{ExpoAiContextShield.PI}</Text>
-        </Group>
-        <Group name="Functions">
-          <Text>{ExpoAiContextShield.hello()}</Text>
-        </Group>
-        <Group name="Async functions">
-          <Button
-            title="Set value"
-            onPress={async () => {
-              await ExpoAiContextShield.setValueAsync('Hello from JS!');
-            }}
-          />
-        </Group>
-        <Group name="Events">
-          <Text>{onChangePayload?.value}</Text>
-        </Group>
         <Group name="Views">
-          <ExpoAiContextShieldView
-            url="https://www.example.com"
-            onLoad={({ nativeEvent: { url } }) => console.log(`Loaded: ${url}`)}
-            style={styles.view}
-          />
+          <AiContextShield isSensitive={true}>
+            <Text style={{ fontSize: 24 }}>Balance: $1,000,000.00</Text>
+          </AiContextShield>
         </Group>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -58,13 +36,13 @@ const styles = {
   },
   group: {
     margin: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
   },
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: "#eee",
   },
   view: {
     flex: 1,
