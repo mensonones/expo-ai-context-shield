@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["ExpoAiContextShieldModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.aicontextshield.ExpoAiContextShieldModule"]
+  }
+}
