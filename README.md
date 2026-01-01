@@ -17,6 +17,7 @@ In 2025/2026, OS-level AI (like Google’s Gemini Nano and Samsung’s Galaxy AI
 * **Hardware-Level Protection:** Automatically blocks screenshots and screen recordings on both iOS and Android using native security layers.
 * **Zero Rendering Bugs:** Optimized for React Native to ensure your content never disappears or "blinks" when security is toggled.
 * **Zero Performance Overhead:** Pure native implementation with no background listeners or heavy wrappers.
+* **Ultra Lightweight:** Only ~9kB (gzipped), ensuring no impact on your app's bundle size.
 
 ---
 
@@ -46,6 +47,16 @@ You might think: *"If the user triggered the AI, they know what they are doing"*
 | Blocks Screenshots | ❌ | ✅ | ✅ |
 | UX Friendly | ✅ | ❌ | ✅ |
 | OCR Resistant | ❌ | ✅ | ✅ |
+
+---
+
+## ⚡ Performance & Size
+
+This module is designed to be as transparent as possible:
+
+- **Package Size:** ~8.6 kB (compressed) / ~24 kB (unpacked).
+- **Native Footprint:** Uses standard system APIs (`FLAG_SECURE` on Android, `isSecureTextEntry` on iOS).
+- **No JS Bridge Overhead:** Communication is minimal and only happens when the `isSensitive` prop changes.
 
 ---
 
