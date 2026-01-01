@@ -27,6 +27,9 @@ In 2025/2026, OS-level AI (like Google’s Gemini Nano and Samsung’s Galaxy AI
 npx expo install expo-ai-context-shield
 ```
 
+> [!IMPORTANT]
+> **This is a native module.** It requires [Development Builds](https://docs.expo.dev/development/introduction/) and will not work in Expo Go. You must run `npx expo prebuild` to use it in your project.
+
 ---
 
 ## 💡 Why this module?
