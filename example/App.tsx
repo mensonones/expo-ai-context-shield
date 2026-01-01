@@ -8,7 +8,7 @@ export default function App() {
         <Text style={styles.header}>Module API Example</Text>
         
         <Group name="Granular Protection (AI Shield)">
-          <AiContextShield isSensitive={true} style={{ padding: 10 }}>
+          <AiContextShield isSensitive style={{ padding: 10 }}>
             <Text style={{ fontSize: 24, color: "black" }}>
               Balance: $1,000,000.00
             </Text>

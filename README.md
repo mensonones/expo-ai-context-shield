@@ -77,7 +77,7 @@ export default function SensitiveScreen() {
       <Text>Public information (visible to AI)</Text>
 
       {/* This part will be blacked out in screenshots and invisible to Gemini/Galaxy AI */}
-      <AiContextShield isSensitive={true} style={{ padding: 10 }}>
+      <AiContextShield isSensitive style={{ padding: 10 }}>
         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>
           Balance: $1,250,000.00
         </Text>
@@ -86,6 +86,32 @@ export default function SensitiveScreen() {
   );
 }
 
+```
+
+> [!TIP]
+> You can use `<AiContextShield isSensitive />` as a shorthand for `<AiContextShield isSensitive={true} />`. In JSX, if you pass a prop without a value, it defaults to `true`.
+>
+> **Why does this work without children?**
+> On Android, this module uses `FLAG_SECURE` on the **entire Activity Window**. This means that simply mounting a single `<AiContextShield />` anywhere in your component tree will protect the **entire screen** from screenshots and AI analysis, even if it wraps nothing.
+
+### Screen-Level Protection (No Children)
+
+You can use the component without children to toggle protection for the entire screen (Android).
+
+```tsx
+import { AiContextShield } from 'expo-ai-context-shield';
+import { View, Text } from 'react-native';
+
+export default function SecretScreen() {
+  return (
+    <View style={{ flex: 1 }}>
+      {/* This will trigger FLAG_SECURE on Android, protecting the whole screen */}
+      <AiContextShield isSensitive />
+      
+      <Text>This entire screen is now protected.</Text>
+    </View>
+  );
+}
 ```
 
 ---
