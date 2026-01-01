@@ -1,15 +1,21 @@
-import { AiContextShield } from "expo-ai-context-shield";
-import { ScrollView, Text, View } from "react-native";
+import { AiContextShield, setVisualSecurity } from "expo-ai-context-shield";
+import { ScrollView, Text, View, Button } from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container}>
         <Text style={styles.header}>Module API Example</Text>
-        <Group name="Views">
-          <AiContextShield isSensitive={true}>
-            <Text style={{ fontSize: 24 }}>Balance: $1,000,000.00</Text>
+        
+        <Group name="Granular Protection (AI Shield)">
+          <AiContextShield isSensitive={true} style={{ padding: 10 }}>
+            <Text style={{ fontSize: 24, color: "black" }}>
+              Balance: $1,000,000.00
+            </Text>
           </AiContextShield>
+          <Text style={{ marginTop: 10, color: '#666' }}>
+            This text is hidden from AI/System Capture.
+          </Text>
         </Group>
       </ScrollView>
     </View>

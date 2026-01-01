@@ -1,0 +1,3 @@
+-keep class expo.modules.aishield.** { *; }
+-keep class expo.modules.kotlin.views.ExpoView { *; }
+-keep public class * extends expo.modules.kotlin.views.ExpoView

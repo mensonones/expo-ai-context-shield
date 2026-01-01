@@ -2,7 +2,6 @@ import ExpoModulesCore
 import UIKit
 
 class ExpoAiContextShieldView: ExpoView {
-  // The trick: UITextField with password field hides content from the system
   private let textField = UITextField()
   private let containerView = UIView()
 
@@ -10,15 +9,13 @@ class ExpoAiContextShieldView: ExpoView {
     super.init(appContext: appContext)
     
     textField.isSecureTextEntry = true
-    textField.isUserInteractionEnabled = false // We don't want the keyboard to open
+    textField.isUserInteractionEnabled = false
     
-    // We get the View layer that iOS uses to hide the password
     if let secureContainer = textField.subviews.first(where: { type(of: $0).description().contains("CanvasView") }) {
         secureContainer.isUserInteractionEnabled = true
         addSubview(secureContainer)
         secureContainer.addSubview(containerView)
         
-        // Constraints to fill everything
         secureContainer.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -36,8 +33,10 @@ class ExpoAiContextShieldView: ExpoView {
     }
   }
 
-  // On iOS, Expo throws the children (Text, Image) inside the default subview.
-  // We need to move them to our protected containerView.
+  func setSensitive(_ isSensitive: Bool) {
+    textField.isSecureTextEntry = isSensitive
+  }
+
   override func insertSubview(_ view: UIView, at index: Int) {
     if view === textField.subviews.first || view === containerView {
         super.insertSubview(view, at: index)

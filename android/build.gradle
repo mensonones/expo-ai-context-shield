@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-group = 'expo.modules.aicontextshield'
+group = 'expo.modules.aishield'
 version = '0.1.0'
 
 def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
@@ -32,10 +32,11 @@ if (useManagedAndroidSdkVersions) {
 }
 
 android {
-  namespace "expo.modules.aicontextshield"
+  namespace "expo.modules.aishield"
   defaultConfig {
     versionCode 1
     versionName "0.1.0"
+    consumerProguardFiles 'proguard-rules.pro'
   }
   lintOptions {
     abortOnError false

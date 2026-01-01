@@ -1,18 +1,21 @@
 # 🛡️ Expo AI Context Shield
 
-**The ultimate privacy layer for Expo apps. Protect sensitive UI from AI vision, Screen Captures, and System Intelligence.**
+**The ultimate privacy layer for Expo apps. Protect sensitive UI from AI vision, Screen Captures (iOS), and System Intelligence.**
 
 In 2025/2026, OS-level AI (like Google’s Gemini Nano and Samsung’s Galaxy AI) can "read" your app's screen to provide context. While helpful, this poses a massive privacy risk for apps handling bank balances, health data, or private credentials.
 
-`expo-ai-context-shield` provides a **granular security boundary** that makes your content invisible to AI OCR and screen capture tools without compromising user experience.
+`expo-ai-context-shield` provides a **semantic security boundary** that makes your content invisible to AI OCR and system intelligence without compromising user experience or causing rendering bugs.
+
+> [!WARNING]
+> **iOS Support:** The iOS implementation is based on native security APIs but has **not been tested on physical devices yet**. Contributions and feedback are welcome!
 
 ---
 
 ## 🚀 Key Features
 
-* **AI Vision Blocking:** Prevents on-device AI (Circle to Search, Smart Selection) from indexing your UI.
-* **Hardware-Level Security:** Leverages Android's `FLAG_SECURE` and iOS's `isSecureTextEntry` trick for 100% reliable blocking.
-* **Granular Protection:** Don't block your whole app; only shield the components that actually contain sensitive data.
+* **AI Vision Blocking:** Prevents on-device AI (Circle to Search, Gemini Nano, Galaxy AI) from indexing or "reading" your sensitive UI.
+* **Hardware-Level Protection:** Automatically blocks screenshots and screen recordings on both iOS and Android using native security layers.
+* **Zero Rendering Bugs:** Optimized for React Native to ensure your content never disappears or "blinks" when security is toggled.
 * **Zero Performance Overhead:** Pure native implementation with no background listeners or heavy wrappers.
 
 ---
@@ -21,7 +24,6 @@ In 2025/2026, OS-level AI (like Google’s Gemini Nano and Samsung’s Galaxy AI
 
 ```bash
 npx expo install expo-ai-context-shield
-
 ```
 
 ---
@@ -41,7 +43,7 @@ You might think: *"If the user triggered the AI, they know what they are doing"*
 | Feature | Standard View | `FLAG_SECURE` (Full App) | **AI Context Shield** |
 | --- | --- | --- | --- |
 | Protects against AI | ❌ | ✅ | ✅ |
-| Allows screenshots | ✅ | ❌ | **Only on non-sensitive parts** |
+| Blocks Screenshots | ❌ | ✅ | ✅ |
 | UX Friendly | ✅ | ❌ | ✅ |
 | OCR Resistant | ❌ | ✅ | ✅ |
 
@@ -100,7 +102,7 @@ export default function SensitiveScreen() {
 ## 📱 Platform Implementation
 
 * **Android (API 29+):** Uses `IMPORTANT_FOR_CONTENT_CAPTURE_NO_EXCLUDE_DESCENDANTS` to block data indexing and `FLAG_SECURE` to block visual pixel capture. Tested on Samsung S23/S24 (Galaxy AI) and Pixel 8/9 (Gemini).
-* **iOS (13.4+):** Implements a hidden `UITextField` canvas layer trick. The system treats the view as a secure password field, automatically stripping it from the screen buffer during capture.
+* **iOS (13.4+):** Implements a hidden `UITextField` canvas layer trick. *(Note: Not yet tested on physical devices)*.
 * **Web:** Transparent fallback. Renders a standard `View` to maintain layout consistency.
 
 ---
